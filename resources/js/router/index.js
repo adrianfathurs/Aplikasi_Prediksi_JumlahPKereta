@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 
 import Dashboard from '../components/DashBoard.vue'
 import Dataset from '../components/Dataset/DatasetComponent.vue'
+import Prediksi from '../components/Prediksi/MainPrediksi.vue'
 
 let routes=[
     {
@@ -23,6 +24,11 @@ let routes=[
         path:'/dataset',
         name:"Dataset",
         component:Dataset,
+    },
+    {
+        path:'/prediksi',
+        name:"Prediksi",
+        component:Prediksi,
     }
 ];
 
