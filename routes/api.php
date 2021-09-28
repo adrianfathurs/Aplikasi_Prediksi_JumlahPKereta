@@ -20,10 +20,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/penumpang', [PenumpangKeretaController::class, 'index']);
+Route::get('/hasilModel', [PenumpangKeretaController::class, 'hasilModel']);
 Route::post('/tambahData', [PenumpangKeretaController::class, 'tambahData']);
+Route::post('/addHasilModel', [
+    PenumpangKeretaController::class,
+    'addHasilModel',
+]);
 Route::delete('/deleteData/{id}', [
     PenumpangKeretaController::class,
     'deleteData',
+]);
+Route::delete('/deleteHasilModel/{id}', [
+    PenumpangKeretaController::class,
+    'deleteHasilModel',
 ]);
 Route::put('/updateData/{id}', [
     PenumpangKeretaController::class,

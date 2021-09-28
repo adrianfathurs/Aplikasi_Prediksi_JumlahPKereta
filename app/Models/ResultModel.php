@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PenumpangKeretaModel extends Model
+class ResultModel extends Model
 {
     use HasFactory;
-    protected $table = 'dataset';
+    protected $table = 'result';
     protected $fillable = [
         'id',
-        'Bulan',
-        'Index_bulan',
-        'Tahun',
-        'Jumlah_penumpang',
         'user_id',
+        'alpha',
+        'beta',
+        'gamma',
+        'model',
+        'nilai_mape',
+        'iterasi',
     ];
     public function tampilData()
     {

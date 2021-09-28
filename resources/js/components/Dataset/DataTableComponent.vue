@@ -28,9 +28,9 @@
           <tr v-for="(item,index) in dataPenumpang" :key="index">
             <td>{{++index}}</td>
             <td>{{item.Bulan}}</td>
-            <td>{{item.Index_Bulan}}</td>
+            <td>{{item.Index_bulan}}</td>
             <td>{{item.Tahun}}</td>
-            <td>{{item.Jumlah_Penumpang}}</td>
+            <td>{{item.Jumlah_penumpang}}</td>
             <td>
               <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" @click="updateItem(item)" data-target="#modal-edit">

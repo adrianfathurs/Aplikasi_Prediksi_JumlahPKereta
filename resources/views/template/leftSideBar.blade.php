@@ -44,16 +44,22 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/prediksi"  class="nav-link">
+                <router-link to="/model"  class="nav-link">
                   <i class="fas fa-calculator"></i>
-                  <p>Prediksi</p>
+                  <p>Model</p>
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/grafik"  class="nav-link">
+                <router-link to="/hasilModel"  class="nav-link">
+                  <i class="fas fa-calculator"></i>
+                  <p>Hasil Pengujian Model</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/prediksi"  class="nav-link">
                   <i class="fas fa-chart-line"></i>
                   <p>
-                    Grafik Data
+                    Prediksi & Grafik Data
                   </p>
                 </router-link>
               </li>

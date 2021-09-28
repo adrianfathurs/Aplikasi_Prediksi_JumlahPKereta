@@ -1,7 +1,5 @@
 <template>
-    
-        
-            <div class="col-md-12 mt-3">
+        <div class="col-md-12 mt-3">
                 <div class="card">
                     <div class="card-header"><h2><b>Dashboard</b></h2></div>
                     <div class="card-body">
@@ -14,8 +12,6 @@
                     </div>
                 </div>
             </div>
-        
-  
 </template>
 
 <script>
