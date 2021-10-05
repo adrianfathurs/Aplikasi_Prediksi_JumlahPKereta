@@ -40,10 +40,10 @@ class PenumpangKeretaController extends Controller
         $userId = 1;
         try {
             $penumpang = new PenumpangKeretaModel();
-            $penumpang->Index_Bulan = $data['Index_Bulan'];
+            $penumpang->Index_bulan = $data['Index_bulan'];
             $penumpang->Bulan = $data['Bulan'];
             $penumpang->Tahun = $data['Tahun'];
-            $penumpang->Jumlah_Penumpang = $data['Jumlah_Penumpang'];
+            $penumpang->Jumlah_penumpang = $data['Jumlah_penumpang'];
             $penumpang->user_id = $userId;
             $penumpang->save();
             return response('Success to Saved Data', 200);
@@ -55,8 +55,9 @@ class PenumpangKeretaController extends Controller
     public function deleteData($id)
     {
         try {
-            $penumpang = PenumpangKeretaModel::find($id);
-            $penumpang->delete();
+            /* $penumpang = PenumpangKeretaModel::find($id);
+             $penumpang->delete(); */
+            PenumpangKeretaModel::destroy($id);
             return response('success', 202);
         } catch (Exception $e) {
             return response('Failed to Deleted Data', 404);

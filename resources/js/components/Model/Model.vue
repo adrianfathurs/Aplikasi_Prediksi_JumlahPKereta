@@ -1,6 +1,8 @@
 <template>
   <div class="col-12 pt-4">
     <!-- jquery validation -->
+    
+
     <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title">Form Input Atribut</h3>
@@ -58,7 +60,7 @@
               <li>Beta :{{ items.beta}}</li>
               <li>Gamma :{{ items.gamma}}</li>
               <li>Nilai MAPE : {{ items.hasil}}</li>
-              <li><button class="btn btn-success" @click="openModalSave(items,'TES_GSSMV')">Simpan Ke hasil Model</button></li>
+              <li v-if="statusAkun"><button class="btn btn-success" @click="openModalSave(items,'TES_GSSMV')">Simpan Ke hasil Model</button></li>  
             </ul>
           </div>
         </div>    
@@ -104,11 +106,12 @@
               <li>Generasi : {{items.generasi}}</li>
               <li>Tahap : {{items.tahap}}</li>
               <li>Nilai MAPE : {{ items.fitnes}}</li>
-              <li><button class="btn btn-success" @click="openModalSave(items,'TES_GEN')">Simpan Ke hasil Model</button></li>
+              <li v-if="statusAkun"><button class="btn btn-success" @click="openModalSave(items,'TES_GEN')">Simpan Ke hasil Model</button></li>
             </ul>
           </div>
         </div>    
     </div>
+  
   </div>
 </template>
 <script>
@@ -119,6 +122,8 @@ export default {
     return {
       iterationTesGS:null,
       iterationTesGen:null,
+      //bukan Admin
+      statusAkun:false,
     }
   },
   computed:{
@@ -133,7 +138,13 @@ export default {
   
   mounted() {
   
-    
+    if ((localStorage.getItem('email')) && (localStorage.getItem('pass')) ) {
+      console.log("Anda Adalah Admin");
+      //admin
+      this.statusAkun=true;
+    }else{
+      console.log("Anda Bukan Admin")
+    }
   },  
   methods: {  
     openModalSave(items,namaModel){

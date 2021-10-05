@@ -8,7 +8,9 @@ export const hitung=(jumlahPenumpang,request)=>{
 
 //deklarasi parameter alpha(mempengaruhi level),beta(mempengaruhi trend),gamma(mempengaruhi seansonality)
    /* let alpha=0.5,beta=0.5,gamma=0.5;  */  /* f(c,b,a),f(a,c,b),f(b,a,c) */
-   let alpha=parseFloat(request.alpha),beta=parseFloat(request.beta),gamma=parseFloat(request.gamma);   /* f(c,b,a),f(a,c,b),f(b,a,c) */
+   let alpha=request.alpha;
+   let beta=request.beta;
+   let gamma=request.gamma;   /* f(c,b,a),f(a,c,b),f(b,a,c) */
  
 
   var t=0;

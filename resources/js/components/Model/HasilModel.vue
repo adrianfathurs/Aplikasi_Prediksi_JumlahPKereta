@@ -18,7 +18,7 @@
               <th>Beta</th>
               <th>Gamma</th>
               <th>Nilai MAPE</th>
-              <th>Action</th>
+              <th v-if="statusAkun">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +30,7 @@
               <td>{{item.beta}}</td>
               <td>{{item.gamma}}</td>
               <td>{{item.nilai_mape}}</td>
-              <td><button class="btn btn-danger" @click="openDelete(item.id)">Delete Data</button></td>
+              <td v-if="statusAkun"><button class="btn btn-danger" @click="openDelete(item.id)">Delete Data</button></td>
               </tr>
             </tbody>
           </table>
@@ -45,6 +45,7 @@ export default {
     return {
       iterationTesGS:null,
       iterationTesGen:null,
+      statusAkun:false
     }
   },
   computed:{
@@ -56,6 +57,13 @@ export default {
   },
   mounted() {
     this.$store.dispatch('penumpangKeretaStore/getDataHasilModel');
+    if ((localStorage.getItem('email')) && (localStorage.getItem('pass')) ) {
+      console.log("Anda Adalah Admin");
+      //admin
+      this.statusAkun=true;
+    }else{
+      console.log("Anda Bukan Admin")
+    }
   },  
   methods: {
      openDelete(item){

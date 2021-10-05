@@ -6,7 +6,7 @@
       </li>
     
     </ul>
-
+    <h5>Sistem Prediksi Jumlah Penumpang Kereta Api Pulau Jawa</h5>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto " >
     </ul>

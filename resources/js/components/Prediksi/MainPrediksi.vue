@@ -35,8 +35,8 @@
           </div>
         </form>
           <div class="card-footer">
-            <button  @click="hitung()" v-show="execute" class="btn btn-success">Hitung</button>
-            <button  @click="reset()" v-show="!execute" class="btn btn-primary">Reset</button>
+            <button  @click="hitung()"  class="btn btn-success">Hitung</button>
+            <!-- <button  @click="reset()"  class="btn btn-primary">Reset</button> -->
           </div>
       </div>
       <div class="row">
@@ -44,13 +44,13 @@
           <div class="card">
             <div class="card-header" style="display:flex">
               <h2><b>Grafik</b></h2>
-              <div style="marginLeft:65vw">
+              <div style="marginLeft:55vw">
                 <button class="btn btn-primary" v-show="!executeGrafik" @click="tampilkanGrafik()">Tampilkan Grafik</button>
                 <button class="btn btn-warning" v-show="executeGrafik" @click="tampilkanGrafik()">Tutup Grafik</button>
               </div>
               </div>
               <div class="card-body" style="clear:both">
-                <Grafik v-show="executeGrafik" :periodePred="periodePrediksi" ></Grafik>
+                <Grafik  v-show="executeGrafik" :periodePred="periodePrediksi" ></Grafik>
               </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
        
         <div class="col">
           <div class="card">
-            <div class="card-header"><h2><b>Data Berasal dari Badan Pusat Statistika ( Tahun 2011 - Tahun 2021/(Bulan Mei) )</b></h2></div>
+            <div class="card-header"><h2><b>Data Berasal dari Badan Pusat Statistika ( Tahun 2011 - Tahun 2021/(Bulan April) )</b></h2></div>
             <div class="card-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -182,6 +182,7 @@ export default {
     }
   },
   mounted() {
+    this.executeGrafik=false;
   },
 }
 </script>

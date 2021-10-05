@@ -10,6 +10,7 @@ import Dataset from '../components/Dataset/DatasetComponent.vue'
 import Model from '../components/Model/Model.vue'
 import HasilModel from '../components/Model/HasilModel.vue'
 import Prediksi from '../components/Prediksi/mainPrediksi.vue'
+import Login from '../components/Login/loginPage.vue'
 
 let routes=[
     {
@@ -41,6 +42,11 @@ let routes=[
         path:'/prediksi',
         name:"Prediksi",
         component:Prediksi,
+    },
+    {
+        path:'/login',
+        name:"Login",
+        component:Login,
     },
 ];
 

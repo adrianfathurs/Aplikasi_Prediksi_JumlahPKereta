@@ -1984,12 +1984,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       dataUpdate: null,
-      status: false
+      status: false,
+      statusAkun: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)({
     dataPenumpangs: 'penumpangKeretaStore/gettersDataPenumpang'
   })),
+  mounted: function mounted() {
+    if (localStorage.getItem('email') && localStorage.getItem('pass')) {
+      console.log("Anda Adalah Admin"); //admin
+
+      this.statusAkun = true;
+    } else {
+      console.log("Anda Bukan Admin");
+    }
+  },
   methods: {
     onLoadPenumpang: function onLoadPenumpang() {
       this.$emit("loadPenumpang");
@@ -2001,9 +2011,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     openDeleted: function openDeleted(id) {
       var _this = this;
 
-      var objectReq = {
-        id: id
-      };
+      var Id = id;
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
         title: "Apakah Anda Yakin Menghapus Data Ini?",
         text: "Data yang telah dihapus tidak dapat kembali",
@@ -2012,7 +2020,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this.$store.dispatch('penumpangKeretaStore/deleteAction', id);
+          console.log("ini idi", id);
+
+          _this.$store.dispatch('penumpangKeretaStore/deleteAction', Id);
 
           _this.$emit("loadPenumpang");
 
@@ -2212,9 +2222,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     onSubmit: function onSubmit() {
       var objectReq = {
         Bulan: this.bulan,
-        Index_Bulan: this.indexBulan,
+        Index_bulan: this.indexBulan,
         Tahun: this.tahun,
-        Jumlah_Penumpang: this.jumlahPenumpang
+        Jumlah_penumpang: this.jumlahPenumpang
       };
       this.$store.dispatch("penumpangKeretaStore/addData", objectReq);
       var load = this.$store.dispatch("penumpangKeretaStore/getDataPenumpangAction");
@@ -2338,11 +2348,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     onSubmit: function onSubmit() {
       var objectReq = {
-        Id: this.items.id,
+        Id: this.items.Id,
         Bulan: this.items.Bulan,
-        Index_Bulan: this.items.Index_Bulan,
+        Index_bulan: this.items.Index_bulan,
         Tahun: this.items.Tahun,
-        Jumlah_Penumpang: this.items.Jumlah_Penumpang
+        Jumlah_penumpang: this.items.Jumlah_penumpang
       };
       console.log(objectReq);
       this.$store.dispatch("penumpangKeretaStore/updateData", objectReq);
@@ -2351,6 +2361,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login/loginPage.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login/loginPage.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
 
@@ -2417,7 +2447,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       iterationTesGS: null,
-      iterationTesGen: null
+      iterationTesGen: null,
+      statusAkun: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
@@ -2425,6 +2456,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   mounted: function mounted() {
     this.$store.dispatch('penumpangKeretaStore/getDataHasilModel');
+
+    if (localStorage.getItem('email') && localStorage.getItem('pass')) {
+      console.log("Anda Adalah Admin"); //admin
+
+      this.statusAkun = true;
+    } else {
+      console.log("Anda Bukan Admin");
+    }
   },
   methods: {
     openDelete: function openDelete(item) {
@@ -2596,13 +2635,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       iterationTesGS: null,
-      iterationTesGen: null
+      iterationTesGen: null,
+      //bukan Admin
+      statusAkun: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
@@ -2612,7 +2656,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hasilMapeTesGenTerbaik: "penumpangKeretaStore/gettersHasilMapeTesGenTerbaik",
     hasilMapeTesGsTerbaik: "penumpangKeretaStore/gettersHasilMapeTesGsTerbaik"
   })),
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    if (localStorage.getItem('email') && localStorage.getItem('pass')) {
+      console.log("Anda Adalah Admin"); //admin
+
+      this.statusAkun = true;
+    } else {
+      console.log("Anda Bukan Admin");
+    }
+  },
   methods: {
     openModalSave: function openModalSave(items, namaModel) {
       var _this = this;
@@ -2699,6 +2751,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2729,6 +2782,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.labelOld = [];
       this.isiDataPrediksi = [];
       this.isiDataActual = [];
+      this.execute = true;
     },
     fillData: function fillData() {
       this.isiDataPrediksi = this.dataPrediksi;
@@ -2982,7 +3036,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       window.location.reload();
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.executeGrafik = false;
+  }
 });
 
 /***/ }),
@@ -3010,9 +3066,9 @@ var hitung = function hitung(jumlahPenumpang, request) {
   /* let alpha=0.5,beta=0.5,gamma=0.5;  */
 
   /* f(c,b,a),f(a,c,b),f(b,a,c) */
-  var alpha = parseFloat(request.alpha),
-      beta = parseFloat(request.beta),
-      gamma = parseFloat(request.gamma);
+  var alpha = request.alpha;
+  var beta = request.beta;
+  var gamma = request.gamma;
   /* f(c,b,a),f(a,c,b),f(b,a,c) */
 
   var t = 0;
@@ -4134,9 +4190,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Model_Model_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Model/Model.vue */ "./resources/js/components/Model/Model.vue");
 /* harmony import */ var _components_Model_HasilModel_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Model/HasilModel.vue */ "./resources/js/components/Model/HasilModel.vue");
 /* harmony import */ var _components_Prediksi_mainPrediksi_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Prediksi/mainPrediksi.vue */ "./resources/js/components/Prediksi/mainPrediksi.vue");
+/* harmony import */ var _components_Login_loginPage_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Login/loginPage.vue */ "./resources/js/components/Login/loginPage.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_1__.default);
+
 
 
 
@@ -4166,6 +4224,10 @@ var routes = [{
   path: '/prediksi',
   name: "Prediksi",
   component: _components_Prediksi_mainPrediksi_vue__WEBPACK_IMPORTED_MODULE_6__.default
+}, {
+  path: '/login',
+  name: "Login",
+  component: _components_Login_loginPage_vue__WEBPACK_IMPORTED_MODULE_7__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   mode: 'history',
@@ -4546,6 +4608,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (state.hasilMapeTesGs.length != 0) {
                   state.hasilMapeTesGs = [];
                   state.hasilMapeTesGsTerbaik = [];
+                  state.jumlahPenumpangTesGs = [];
                 }
 
                 state.dataPenumpang = payload.result;
@@ -4570,7 +4633,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-              case 8:
+                console.log(state.jumlahPenumpangTesGs, "ini tes gessss");
+
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -4589,6 +4654,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (state.hasilMapeTesGen.length != 0) {
                   state.hasilMapeTesGen = [];
                   state.hasilMapeTesGenTerbaik = [];
+                  state.jumlahPenumpangTesGen = [];
                 }
 
                 state.dataPenumpang = payload.result;
@@ -4631,17 +4697,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                state.jumlahPenumpangTes = [];
                 state.dataPenumpang = payload.result;
+                state.hasilDataParameter = [];
                 data = state.dataPenumpang;
 
                 for (index = 0; index < data.length; index++) {
                   state.jumlahPenumpangTes.push(data[index].Jumlah_penumpang);
                 }
 
-                _context3.next = 5;
+                _context3.next = 7;
                 return _Perhitungan_TES_js__WEBPACK_IMPORTED_MODULE_4__.hitung(state.jumlahPenumpangTes, payload.request);
 
-              case 5:
+              case 7:
                 hasil = _context3.sent;
                 state.hasilDataPrediksi = hasil[0].Yprediksi;
                 state.hasilDataActual = hasil[0].YdataActual;
@@ -4663,7 +4731,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 state.hasilDataParameter.push(obj);
                 console.log(state.hasilDataParameter, "ini hasil");
 
-              case 17:
+              case 19:
               case "end":
                 return _context3.stop();
             }
@@ -82440,6 +82508,45 @@ component.options.__file = "resources/js/components/Dataset/ModalUpdateData.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Login/loginPage.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Login/loginPage.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _loginPage_vue_vue_type_template_id_90a09c52___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loginPage.vue?vue&type=template&id=90a09c52& */ "./resources/js/components/Login/loginPage.vue?vue&type=template&id=90a09c52&");
+/* harmony import */ var _loginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loginPage.vue?vue&type=script&lang=js& */ "./resources/js/components/Login/loginPage.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _loginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _loginPage_vue_vue_type_template_id_90a09c52___WEBPACK_IMPORTED_MODULE_0__.render,
+  _loginPage_vue_vue_type_template_id_90a09c52___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Login/loginPage.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Model/HasilModel.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/Model/HasilModel.vue ***!
@@ -82678,6 +82785,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Login/loginPage.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/Login/loginPage.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_loginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./loginPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login/loginPage.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_loginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Model/HasilModel.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Model/HasilModel.vue?vue&type=script&lang=js& ***!
@@ -82840,6 +82963,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Login/loginPage.vue?vue&type=template&id=90a09c52&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Login/loginPage.vue?vue&type=template&id=90a09c52& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_loginPage_vue_vue_type_template_id_90a09c52___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_loginPage_vue_vue_type_template_id_90a09c52___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_loginPage_vue_vue_type_template_id_90a09c52___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./loginPage.vue?vue&type=template&id=90a09c52& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login/loginPage.vue?vue&type=template&id=90a09c52&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Model/HasilModel.vue?vue&type=template&id=6431bfc6&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/Model/HasilModel.vue?vue&type=template&id=6431bfc6& ***!
@@ -82937,7 +83077,7 @@ var render = function() {
               _c("h3", [
                 _c("b", [
                   _vm._v(
-                    "Aplikasi Prediksi Jumlah Penumpang Kereta API Khusus Pulau Jawa"
+                    "Sistem Prediksi Jumlah Penumpang Kereta API Khusus Pulau Jawa"
                   )
                 ])
               ]),
@@ -82995,16 +83135,18 @@ var render = function() {
       _c("div", { staticClass: "card-header row" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-2" },
-          [
-            _c("modal-tambah-data", {
-              on: { loadPenumpang: _vm.onLoadPenumpang }
-            })
-          ],
-          1
-        )
+        _vm.statusAkun
+          ? _c(
+              "div",
+              { staticClass: "col-2" },
+              [
+                _c("modal-tambah-data", {
+                  on: { loadPenumpang: _vm.onLoadPenumpang }
+                })
+              ],
+              1
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -83015,7 +83157,21 @@ var render = function() {
             attrs: { id: "example2" }
           },
           [
-            _vm._m(1),
+            _c("thead", [
+              _c("tr", [
+                _c("th", [_vm._v("No")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Bulan")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Index Bulan")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Tahun")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Jumlah Penumpang")]),
+                _vm._v(" "),
+                _vm.statusAkun ? _c("th", [_vm._v("Actions")]) : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "tbody",
@@ -83031,73 +83187,75 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(item.Jumlah_penumpang))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c("div", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "modal",
-                            "data-target": "#modal-edit"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.updateItem(item)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\r\n                  Update Data\r\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.status
-                        ? _c(
-                            "div",
+                  _vm.statusAkun
+                    ? _c("td", [
+                        _c("div", [
+                          _c(
+                            "button",
                             {
-                              staticClass: "modal fade",
-                              attrs: { id: "modal-edit" }
+                              staticClass: "btn btn-primary",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "modal",
+                                "data-target": "#modal-edit"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateItem(item)
+                                }
+                              }
                             },
                             [
-                              _c("modal-update-data", {
-                                attrs: { items: _vm.dataUpdate },
-                                on: { loadPenumpang: _vm.onLoadPenumpang }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          directives: [
+                              _vm._v(
+                                "\r\n                  Update Data\r\n                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.status
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "modal fade",
+                                  attrs: { id: "modal-edit" }
+                                },
+                                [
+                                  _c("modal-update-data", {
+                                    attrs: { items: _vm.dataUpdate },
+                                    on: { loadPenumpang: _vm.onLoadPenumpang }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
                             {
-                              name: "show",
-                              rawName: "v-show",
-                              value: index == _vm.dataPenumpang.length,
-                              expression: "index == dataPenumpang.length"
-                            }
-                          ],
-                          staticClass: "btn btn-danger",
-                          on: {
-                            click: function($event) {
-                              return _vm.openDeleted(item.id)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\r\n                  Delete\r\n                "
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: index == _vm.dataPenumpang.length,
+                                  expression: "index == dataPenumpang.length"
+                                }
+                              ],
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.openDeleted(item.Id)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                  Delete\r\n                "
+                              )
+                            ]
                           )
-                        ]
-                      )
-                    ])
-                  ])
+                        ])
+                      ])
+                    : _vm._e()
                 ])
               }),
               0
@@ -83115,26 +83273,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-10" }, [
       _c("h3", [_vm._v("Data-Data Jumlah Penumpang Kereta")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("No")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Bulan")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Index Bulan")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Tahun")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Jumlah Penumpang")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
-      ])
     ])
   }
 ]
@@ -83251,20 +83389,20 @@ var render = function() {
         attrs: {
           type: "button",
           "data-toggle": "modal",
-          "data-target": "#modal-default"
+          "data-target": "#modalTambah"
         }
       },
       [_vm._v("\n    Tambah Data\n  ")]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "modal fade", attrs: { id: "modal-default" } }, [
+    _c("div", { staticClass: "modal fade", attrs: { id: "modalTambah" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "modal-body" },
+            { staticClass: "modal-body", attrs: { id: "modalTambah" } },
             [
               _c("ValidationObserver", {
                 scopedSlots: _vm._u([
@@ -83615,6 +83753,7 @@ var staticRenderFns = [
           attrs: {
             type: "button",
             "data-dismiss": "modal",
+            "data-toggle": "",
             "aria-label": "Close"
           }
         },
@@ -83774,9 +83913,9 @@ var render = function() {
                                                 {
                                                   name: "model",
                                                   rawName: "v-model",
-                                                  value: _vm.items.Index_Bulan,
+                                                  value: _vm.items.Index_bulan,
                                                   expression:
-                                                    "items.Index_Bulan"
+                                                    "items.Index_bulan"
                                                 }
                                               ],
                                               staticClass: "form-control",
@@ -83786,7 +83925,7 @@ var render = function() {
                                                 placeholder: "Enter Index Bulan"
                                               },
                                               domProps: {
-                                                value: _vm.items.Index_Bulan
+                                                value: _vm.items.Index_bulan
                                               },
                                               on: {
                                                 input: function($event) {
@@ -83795,7 +83934,7 @@ var render = function() {
                                                   }
                                                   _vm.$set(
                                                     _vm.items,
-                                                    "Index_Bulan",
+                                                    "Index_bulan",
                                                     $event.target.value
                                                   )
                                                 }
@@ -83912,9 +84051,9 @@ var render = function() {
                                                   name: "model",
                                                   rawName: "v-model",
                                                   value:
-                                                    _vm.items.Jumlah_Penumpang,
+                                                    _vm.items.Jumlah_penumpang,
                                                   expression:
-                                                    "items.Jumlah_Penumpang"
+                                                    "items.Jumlah_penumpang"
                                                 }
                                               ],
                                               staticClass: "form-control",
@@ -83926,7 +84065,7 @@ var render = function() {
                                               },
                                               domProps: {
                                                 value:
-                                                  _vm.items.Jumlah_Penumpang
+                                                  _vm.items.Jumlah_penumpang
                                               },
                                               on: {
                                                 input: function($event) {
@@ -83935,7 +84074,7 @@ var render = function() {
                                                   }
                                                   _vm.$set(
                                                     _vm.items,
-                                                    "Jumlah_Penumpang",
+                                                    "Jumlah_penumpang",
                                                     $event.target.value
                                                   )
                                                 }
@@ -84033,6 +84172,31 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login/loginPage.vue?vue&type=template&id=90a09c52&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login/loginPage.vue?vue&type=template&id=90a09c52& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n  dkfnsjkfnjksdfnsjk\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Model/HasilModel.vue?vue&type=template&id=6431bfc6&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Model/HasilModel.vue?vue&type=template&id=6431bfc6& ***!
@@ -84061,7 +84225,25 @@ var render = function() {
             attrs: { id: "example2" }
           },
           [
-            _vm._m(1),
+            _c("thead", [
+              _c("tr", [
+                _c("th", [_vm._v("No")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Model")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Iterasi/Generasi")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Alpha")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Beta")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Gamma")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Nilai MAPE")]),
+                _vm._v(" "),
+                _vm.statusAkun ? _c("th", [_vm._v("Action")]) : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "tbody",
@@ -84081,20 +84263,22 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(item.nilai_mape))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        on: {
-                          click: function($event) {
-                            return _vm.openDelete(item.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Delete Data")]
-                    )
-                  ])
+                  _vm.statusAkun
+                    ? _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.openDelete(item.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete Data")]
+                        )
+                      ])
+                    : _vm._e()
                 ])
               }),
               0
@@ -84113,30 +84297,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header row" }, [
       _c("div", { staticClass: "col-10" }, [
         _c("h3", [_vm._v("Hasil Pengujian Modell")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("No")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Model")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Iterasi/Generasi")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Alpha")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Beta")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Gamma")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Nilai MAPE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
       ])
     ])
   }
@@ -84303,20 +84463,22 @@ var render = function() {
                 _vm._v(" "),
                 _c("li", [_vm._v("Nilai MAPE : " + _vm._s(items.hasil))]),
                 _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      on: {
-                        click: function($event) {
-                          return _vm.openModalSave(items, "TES_GSSMV")
-                        }
-                      }
-                    },
-                    [_vm._v("Simpan Ke hasil Model")]
-                  )
-                ])
+                _vm.statusAkun
+                  ? _c("li", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.openModalSave(items, "TES_GSSMV")
+                            }
+                          }
+                        },
+                        [_vm._v("Simpan Ke hasil Model")]
+                      )
+                    ])
+                  : _vm._e()
               ])
             })
           ],
@@ -84381,20 +84543,22 @@ var render = function() {
                 _vm._v(" "),
                 _c("li", [_vm._v("Nilai MAPE : " + _vm._s(items.fitnes))]),
                 _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      on: {
-                        click: function($event) {
-                          return _vm.openModalSave(items, "TES_GEN")
-                        }
-                      }
-                    },
-                    [_vm._v("Simpan Ke hasil Model")]
-                  )
-                ])
+                _vm.statusAkun
+                  ? _c("li", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.openModalSave(items, "TES_GEN")
+                            }
+                          }
+                        },
+                        [_vm._v("Simpan Ke hasil Model")]
+                      )
+                    ])
+                  : _vm._e()
               ])
             })
           ],
@@ -84538,6 +84702,26 @@ var render = function() {
           }
         },
         [_vm._v("Tampil Grafik")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.execute,
+              expression: "!execute"
+            }
+          ],
+          on: {
+            click: function($event) {
+              return _vm.resetData()
+            }
+          }
+        },
+        [_vm._v("Reset Grafik")]
       )
     ],
     1
@@ -84724,14 +84908,6 @@ var render = function() {
         _c(
           "button",
           {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.execute,
-                expression: "execute"
-              }
-            ],
             staticClass: "btn btn-success",
             on: {
               click: function($event) {
@@ -84740,27 +84916,6 @@ var render = function() {
             }
           },
           [_vm._v("Hitung")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.execute,
-                expression: "!execute"
-              }
-            ],
-            staticClass: "btn btn-primary",
-            on: {
-              click: function($event) {
-                return _vm.reset()
-              }
-            }
-          },
-          [_vm._v("Reset")]
         )
       ])
     ]),
@@ -84774,7 +84929,7 @@ var render = function() {
             [
               _vm._m(1),
               _vm._v(" "),
-              _c("div", { staticStyle: { marginLeft: "65vw" } }, [
+              _c("div", { staticStyle: { marginLeft: "55vw" } }, [
                 _c(
                   "button",
                   {
@@ -85011,7 +85166,7 @@ var staticRenderFns = [
       _c("h2", [
         _c("b", [
           _vm._v(
-            "Data Berasal dari Badan Pusat Statistika ( Tahun 2011 - Tahun 2021/(Bulan Mei) )"
+            "Data Berasal dari Badan Pusat Statistika ( Tahun 2011 - Tahun 2021/(Bulan April) )"
           )
         ])
       ])

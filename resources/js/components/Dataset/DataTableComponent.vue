@@ -6,7 +6,7 @@
       <div class="col-10">
         <h3 >Data-Data Jumlah Penumpang Kereta</h3>
       </div>
-      <div class="col-2">
+      <div v-if="statusAkun" class="col-2">
         <modal-tambah-data @loadPenumpang="onLoadPenumpang"></modal-tambah-data>
       </div>
     </div>
@@ -21,7 +21,7 @@
             <th>Index Bulan</th>
             <th>Tahun</th>
             <th>Jumlah Penumpang</th>
-            <th>Actions</th>
+            <th v-if="statusAkun" >Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
             <td>{{item.Index_bulan}}</td>
             <td>{{item.Tahun}}</td>
             <td>{{item.Jumlah_penumpang}}</td>
-            <td>
+            <td v-if="statusAkun" >
               <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" @click="updateItem(item)" data-target="#modal-edit">
                   Update Data
@@ -39,7 +39,7 @@
                 <div v-if="status" class="modal fade" id="modal-edit">
                   <modal-update-data @loadPenumpang="onLoadPenumpang" :items="dataUpdate"></modal-update-data>
                 </div>
-                <button class="btn btn-danger" v-show="index == dataPenumpang.length" @click="openDeleted(item.id)">
+                <button class="btn btn-danger" v-show="index == dataPenumpang.length" @click="openDeleted(item.Id)">
                   Delete
                 </button>
                 </div>
@@ -66,12 +66,22 @@ export default {
     return {
       dataUpdate:null,
       status:false,
+      statusAkun:false
     }
   },
   computed:{
     ...mapGetters({
       dataPenumpangs:'penumpangKeretaStore/gettersDataPenumpang'
     })
+  },
+  mounted(){
+     if ((localStorage.getItem('email')) && (localStorage.getItem('pass')) ) {
+      console.log("Anda Adalah Admin");
+      //admin
+      this.statusAkun=true;
+    }else{
+      console.log("Anda Bukan Admin")
+    }
   },
   methods: {
     onLoadPenumpang(){
@@ -83,9 +93,8 @@ export default {
     }
     ,
     openDeleted(id){
-      let objectReq={
-        id
-      }
+      let Id=id;
+        
       swal({
         title: "Apakah Anda Yakin Menghapus Data Ini?",
         text: "Data yang telah dihapus tidak dapat kembali",
@@ -95,7 +104,8 @@ export default {
       })
       .then((willDelete) => {
         if (willDelete) {
-          this.$store.dispatch('penumpangKeretaStore/deleteAction',id);
+          console.log("ini idi",id)
+          this.$store.dispatch('penumpangKeretaStore/deleteAction',Id);
           this.$emit("loadPenumpang")
           swal("Berhasil Menghapus Data", {
             icon: "success",

@@ -15,6 +15,25 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function login()
+    {
+        return view('login');
+    }
+    public function auth(Request $request)
+    {
+        var_dump($request->input('email'));
+        var_dump($request->input('password'));
+        if (
+            $request->input('email') == 'fatursetiawan80@gmail.com' &&
+            $request->input('password') == 'fatur123'
+        ) {
+            $minutes = 60;
+            $response = new Response('Set Cookie');
+            $response->withCookie(cookie('name', 'MyValue', $minutes));
+            return view('home');
+        } else {
+        }
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -9,8 +9,9 @@ class PenumpangKeretaModel extends Model
 {
     use HasFactory;
     protected $table = 'dataset';
+    protected $primaryKey = 'Id';
     protected $fillable = [
-        'id',
+        'Id',
         'Bulan',
         'Index_bulan',
         'Tahun',

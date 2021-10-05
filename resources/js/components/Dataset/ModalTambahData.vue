@@ -1,18 +1,18 @@
 <template>
   <div id="modal_tambah">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
       Tambah Data
     </button>
-    <div class="modal fade" id="modal-default">
+    <div class="modal fade" id="modalTambah">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title"><b>Tambah Data</b></h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" data-toggle="" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" id="modalTambah">
             <ValidationObserver v-slot="{ handleSubmit }">
             <form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <div class="card-body">
@@ -94,9 +94,9 @@ export default {
     onSubmit(){
       let objectReq ={
         Bulan:this.bulan,
-        Index_Bulan:this.indexBulan,
+        Index_bulan:this.indexBulan,
         Tahun:this.tahun,
-        Jumlah_Penumpang:this.jumlahPenumpang,
+        Jumlah_penumpang:this.jumlahPenumpang,
       }
 
       this.$store.dispatch("penumpangKeretaStore/addData",objectReq);

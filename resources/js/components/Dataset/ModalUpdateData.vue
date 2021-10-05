@@ -26,7 +26,7 @@
                   <div class="form-group">
                     <label for="IndexBulan">Index Bulan</label>
                     <ValidationProvider name="IndexBulan" rules="integer|required" v-slot="{ errors }">
-                      <input type="text" v-model="items.Index_Bulan" class="form-control" id="IndexBulan" placeholder="Enter Index Bulan">
+                      <input type="text" v-model="items.Index_bulan" class="form-control" id="IndexBulan" placeholder="Enter Index Bulan">
                       <span>{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>
@@ -40,7 +40,7 @@
                   <div class="form-group">
                     <label for="JumlahPenumpang">Jumlah Penumpang</label>
                     <ValidationProvider name="JumlahPenumpang" rules="integer|required" v-slot="{ errors }">
-                      <input type="text" v-model="items.Jumlah_Penumpang" class="form-control" id="JumlahPenumpang" placeholder="Enter Jumlah Penumpang">
+                      <input type="text" v-model="items.Jumlah_penumpang" class="form-control" id="JumlahPenumpang" placeholder="Enter Jumlah Penumpang">
                       <span>{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>
@@ -94,11 +94,11 @@ export default {
   methods: {
     onSubmit(){
       let objectReq ={
-        Id:this.items.id,
+        Id:this.items.Id,
         Bulan:this.items.Bulan,
-        Index_Bulan:this.items.Index_Bulan,
+        Index_bulan:this.items.Index_bulan,
         Tahun:this.items.Tahun,
-        Jumlah_Penumpang:this.items.Jumlah_Penumpang,
+        Jumlah_penumpang:this.items.Jumlah_penumpang,
       }
       console.log(objectReq);
       this.$store.dispatch("penumpangKeretaStore/updateData",objectReq);

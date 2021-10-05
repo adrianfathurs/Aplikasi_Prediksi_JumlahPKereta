@@ -2,6 +2,7 @@
   <div class="small">
     <line-chart :chart-data="datacollection"></line-chart>
     <button v-show="execute" @click="fillData()">Tampil Grafik</button>
+    <button v-show="!execute" @click="resetData()">Reset Grafik</button>
     
   </div>
 </template>
@@ -42,6 +43,7 @@
         this.labelOld=[];
         this.isiDataPrediksi=[];
         this.isiDataActual=[];
+        this.execute=true;
       },
       fillData () {
       this.isiDataPrediksi=this.dataPrediksi;

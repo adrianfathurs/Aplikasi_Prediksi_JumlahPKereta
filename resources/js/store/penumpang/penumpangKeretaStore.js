@@ -40,6 +40,7 @@ export default ({
       if(state.hasilMapeTesGs.length !=0){
         state.hasilMapeTesGs=[];
         state.hasilMapeTesGsTerbaik=[];
+        state.jumlahPenumpangTesGs=[];
       }
         state.dataPenumpang=payload.result;
       
@@ -57,11 +58,13 @@ export default ({
               console.log(state.hasilMapeTesGsTerbaik,"index",index);
             }
           }  
+          console.log(state.jumlahPenumpangTesGs,"ini tes gessss")
     },
     async TesGen(state,payload){
       if(state.hasilMapeTesGen.length  !=0){
         state.hasilMapeTesGen=[];
         state.hasilMapeTesGenTerbaik=[];
+        state.jumlahPenumpangTesGen=[];
       }
       state.dataPenumpang=payload.result;
       
@@ -83,7 +86,9 @@ export default ({
       } 
     },
     async Tes(state,payload){
+      state.jumlahPenumpangTes=[];
       state.dataPenumpang=payload.result;
+      state.hasilDataParameter=[];
       var data=state.dataPenumpang;
       for (let index = 0; index < data.length; index++) {
         state.jumlahPenumpangTes.push(data[index].Jumlah_penumpang);

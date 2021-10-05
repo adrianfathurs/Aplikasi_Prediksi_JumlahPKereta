@@ -5,7 +5,7 @@
                     <div class="card-body">
                         <center>
                             <div>
-                                <h3><b>Aplikasi Prediksi Jumlah Penumpang Kereta API Khusus Pulau Jawa</b></h3>
+                                <h3><b>Sistem Prediksi Jumlah Penumpang Kereta API Khusus Pulau Jawa</b></h3>
                                 <img :src="'/images/keretaApi.jpg'" width="500px" height="400px" alt="">
                             </div>
                         </center>
